@@ -28,7 +28,6 @@ You can install the main dependencies with:
 pip install torch torchvision torchaudio  # choose versions per your CUDA
 pip install torch-geometric               # see https://pytorch-geometric.readthedocs.io
 pip install numpy scipy scikit-learn tqdm
-...
 
 
 ## 2. Data format
