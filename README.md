@@ -66,7 +66,7 @@ This script trains a SEAL model under a given structural negative sampling confi
 - It then extracts k-hop enclosing subgraphs, applies DRNL labeling, and trains a DGCNN encoder as in SEAL.
 - A checkpoint is saved for later retrieval evaluation.
 Example: train SEAL on USAir with (n_rand_per_pos, n_twohop_per_pos) = (1, 1), k = 1:
-
+```python
 python seal_train_twohop_neg.py
 --edge_path data/USAir.txt
 --num_hops 1
@@ -83,7 +83,7 @@ python seal_train_twohop_neg.py
 --n_twohop_per_pos 1
 --model_dir models_twohop/USAir
 --model_name USAir_seal_twohop_nr1_nt1
-
+```
 A checkpoint will be saved to:
 models_twohop/USAir/USAir_seal_twohop_nr1_nt1.pt
 
@@ -105,7 +105,7 @@ You can either:
 - Let seal_retrieval.py train a random-negative model internally (epochs > 0, no --load_model), or
 - Load a pre-trained checkpoint (trained with structural negatives) via --load_model.
 Example: evaluate a pre-trained SEAL model under two-hop retrieval on USAir, K = 50:
-
+```python
 python seal_retrieval.py
 --edge_path data/USAir.txt
 --num_hops 1
@@ -121,7 +121,7 @@ python seal_retrieval.py
 --retrieval_K 50
 --candidate_strategy two_hop
 --load_model models_twohop/USAir/USAir_seal_twohop_nr1_nt1.pt
-
+```
 The script prints a line like:
 
 Retrieval metrics: {'Prec@10': ..., 'Prec@20': ..., 'MRR': ..., 'mAP_local': ...}
@@ -140,9 +140,9 @@ For each dataset, each configuration, and each K, it:
 - Evaluates it under the two-hop retrieval protocol (calls seal_retrieval.py);
 - Writes a row to the CSV file sweep_twohop_train_retrieval_results2.csv.
 Example:
-
+```python
 python sweep_twohop_train_retrieval2.py
-
+```
 The resulting CSV is used to construct:
 
 Per-graph negative sampling grids (e.g., USAir, NS);
@@ -155,7 +155,7 @@ This script evaluates classical heuristics (common neighbors and resource alloca
 - Global protocol: AUC and AP against random negatives;
 - Two-hop retrieval protocol: Precision@K, MRR, and mAP_local with two-hop candidate sets.
 Example:
-
+```python
 python heuristic_retrieval.py
 --edge_path data/USAir.txt
 --val_ratio 0.05
@@ -163,7 +163,7 @@ python heuristic_retrieval.py
 --seed 12345
 --candidate_K 50
 --Ks 10,20
-
+```
 This prints:
 - Global AUC/AP for CN and RA; and
 - Two-hop retrieval metrics (Prec@K, MRR, mAP_local) at the specified Ks.
