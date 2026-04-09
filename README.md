@@ -28,16 +28,14 @@ You can install the main dependencies with:
 pip install torch torchvision torchaudio  # choose versions per your CUDA
 pip install torch-geometric               # see https://pytorch-geometric.readthedocs.io
 pip install numpy scipy scikit-learn tqdm
-
-
-## 2. Data format
+```
 
 ## 2. Data format
 Each graph is stored as an undirected edge list in a text file, one edge per line:
 ```text
 u v
 u' v'
-...
+```
 
 The paper uses eight standard benchmark graphs:
 
